@@ -6,38 +6,6 @@ import Input from './components/Input'
 import Output from './components/Output'
 import './index.css'
 
-const initialState = [
-  {
-    id: 0,
-    name: '',
-    isDone: null
-  }
-];
-
-export const reducerTodo = (state = initialState, action) => {
-  switch (action.type) {
-    case 'ADD':
-      return [
-        ...state,
-        {
-          id: action.payload.id,
-          name: action.payload.name,
-          isDone: false
-        }
-      ];
-    case 'DONE':
-      return state.map( item =>
-        (item.id === action.id)
-          ? {...item, isDone: !item.isDone}
-          : item
-      );
-    default:
-      return state;
-  }
-/*
-  return state;*/
-};
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -69,7 +37,7 @@ class App extends Component {
           userClickFilterOne={e => console.log('second button')}
           userClickFilterTwo={e => console.log('third button')}
         />
-        <ul>
+        <ol>
           {/*          {
             this.props.todoItems.map((el, index) =>
               (el !== '' && el !== ' ' && el !== null) ?
@@ -81,7 +49,7 @@ class App extends Component {
                 <Output userDone={el.isDone} makeClick={(event) => this.doneHandler(event, el.id, el.name)}
                         key={el.id}>{el.name}</Output> : null
             )}
-        </ul>
+        </ol>
       </React.Fragment>
     );
   }

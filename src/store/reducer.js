@@ -1,30 +1,29 @@
 import * as actionTypes from './actions';
 
-const initialState = {
-  item: null
-};
+const initialState = [];
 
-const reducer = (state = initialState, action) => {
+const reducerTodo = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD:
-      return {
+      return [
         ...state,
-        item: {
-          ...state.item,
-          [action.itemContent]: state.item[action.itemContent]
+        {
+          id: action.payload.id,
+          name: action.payload.name,
+          isDone: false
         }
-      }
-    case actionTypes.REMOVE_ITEM:
-      return {}
-    case actionTypes.FILTER_ALL:
-      return {}
-    case actionTypes.FILTER_UNDONE:
-      return {}
-    case actionTypes.FILTER_DONE:
-      return {}
+      ];
+    case actionTypes.DONE:
+      return state.map( item =>
+        (item.id === action.id)
+          ? {...item, isDone: !item.isDone}
+          : item
+      );
     default:
       return state;
   }
+  /*
+    return state;*/
 };
 
-export default reducer;
+export default reducerTodo;
