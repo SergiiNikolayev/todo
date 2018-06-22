@@ -2,9 +2,9 @@ import React from 'react';
 
 const output = (props) => {
   return (
-    <div>
-      <p>{props.children}</p>
-    </div>
+    <li onClick={props.makeClick} style={{
+      color: props.userDone ? 'red' : 'black'
+    }}>{props.children}</li>
   );
 };
 
