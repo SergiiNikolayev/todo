@@ -5,8 +5,9 @@ const controls = (props) => {
     <div>
       <h4>{props.children}</h4>
       <button onClick={props.userClick}>Add</button>
-      <button onClick={props.userClickFilterOne}>Filter 1</button>
-      <button onClick={props.userClickFilterTwo}>Filter 2</button>
+      <button onClick={props.userClickFilterOne}>Done [red]</button>
+      <button onClick={props.userClickFilterTwo}>Not Done [black]</button>
+      <button onClick={props.userClickFilterThree}>Show all</button>
     </div>
   );
 };

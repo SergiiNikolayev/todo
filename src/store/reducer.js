@@ -19,6 +19,20 @@ const reducerTodo = (state = initialState, action) => {
           ? {...item, isDone: !item.isDone}
           : item
       );
+    case actionTypes.SORT_RED:
+      return [
+        ...state.filter( item =>
+          item.isDone === true
+        )
+      ];
+    case actionTypes.SORT_BLACK:
+      return state.filter( item =>
+        item.isDone !== true
+      );
+    case actionTypes.SORT_ALL:
+      return state.filter( item =>
+        item.isDone || !item.isDone
+      );
     default:
       return state;
   }

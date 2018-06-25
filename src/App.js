@@ -16,12 +16,25 @@ class App extends Component {
   itemAddHandler = () => {
     this.props.onItemAdd(this.getTextInput.value);
     this.getTextInput.value = '';
-  }
+  };
 
   doneHandler = (event, id, name) => {
     console.log('click made on:  \"' + name + " : " + id + '\"  |event: ' + event);
     this.props.onItemDone(id);
-  }
+  };
+
+  sortDoneHandler = (id) => {
+    console.log("ID sortDOne: " + id);
+    this.props.onItemSortDone(id);
+  };
+
+  sortUnDoneHandler = (e) => {
+    this.props.onItemSortUnDone(e);
+  };
+
+  sortAllHandler = (e) => {
+    this.props.onItemSortAll(e)
+  };
 
   render() {
     return (
@@ -34,15 +47,11 @@ class App extends Component {
         />
         <Controls
           userClick={this.itemAddHandler}
-          userClickFilterOne={e => console.log('second button')}
-          userClickFilterTwo={e => console.log('third button')}
+          userClickFilterOne={e => this.sortDoneHandler(e)}
+          userClickFilterTwo={e => this.sortUnDoneHandler(e)}
+          userClickFilterThree={e => this.sortAllHandler(e)}
         />
         <ol>
-          {/*          {
-            this.props.todoItems.map((el, index) =>
-              (el !== '' && el !== ' ' && el !== null) ?
-                <Output makeClick={(event) => this.doneHandler(event, index)} key={index}>{el}</Output> : null
-            )}*/}
           {
             this.props.todoItems.map((el, index) =>
               (el.name !== '' && el.name !== ' ' && el.name !== null) ?
@@ -54,7 +63,6 @@ class App extends Component {
     );
   }
 }
-
 
 export default connect(
   state => ({
@@ -72,6 +80,21 @@ export default connect(
     onItemDone: (id) => {
       dispatch({
         type: 'DONE', id
+      })
+    },
+    onItemSortDone: (id) => {
+      dispatch({
+        type: 'SORT_RED', id
+      })
+    },
+    onItemSortUnDone: (id) => {
+      dispatch({
+        type: 'SORT_BLACK', id
+      })
+    },
+    onItemSortAll: (e) => {
+      dispatch({
+        type: 'SORT_ALL', e
       })
     }
   })
