@@ -11,6 +11,9 @@ const store = createStore(reducerTodo,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 
+
+console.log(store.getState());
+
 const app = (
   <Provider store={store}>
     <App />

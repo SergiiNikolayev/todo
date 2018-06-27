@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Controls from './components/Controls'
 import Input from './components/Input'
 import Output from './components/Output'
+import {getFilteredItems} from './store/selects'
 import './index.css'
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
   itemAddHandler = () => {
     this.props.onItemAdd(this.getTextInput.value);
     this.getTextInput.value = '';
+    console.log(this.props);
   };
 
   doneHandler = (event, id, name) => {
@@ -23,17 +25,16 @@ class App extends Component {
     this.props.onItemDone(id);
   };
 
-  sortDoneHandler = (id) => {
-    console.log("ID sortDOne: " + id);
-    this.props.onItemSortDone(id);
+  sortDoneHandler = () => {
+    this.props.onItemSortDone();
   };
 
-  sortUnDoneHandler = (e) => {
-    this.props.onItemSortUnDone(e);
+  sortUnDoneHandler = () => {
+    this.props.onItemSortUnDone();
   };
 
-  sortAllHandler = (e) => {
-    this.props.onItemSortAll(e)
+  sortAllHandler = () => {
+    this.props.onItemSortAll()
   };
 
   render() {
@@ -54,9 +55,13 @@ class App extends Component {
         <ol>
           {
             this.props.todoItems.map((el, index) =>
-              (el.name !== '' && el.name !== ' ' && el.name !== null) ?
-                <Output userDone={el.isDone} makeClick={(event) => this.doneHandler(event, el.id, el.name)}
-                        key={el.id}>{el.name}</Output> : null
+              (el.name !== '' && el.name !== ' ' && el.name !== null)
+                ? <Output
+                  userDone={el.isDone}
+                  makeClick={(event) =>
+                    this.doneHandler(event, el.id, el.name)}
+                  key={el.id}>{el.name}</Output>
+                : null
             )}
         </ol>
       </React.Fragment>
@@ -66,7 +71,8 @@ class App extends Component {
 
 export default connect(
   state => ({
-    todoItems: state
+    //todoItems: state.items,
+    todoItems: getFilteredItems({ ...state }) //store
   }),
   dispatch => ({
     onItemAdd: (item) => {
@@ -82,19 +88,19 @@ export default connect(
         type: 'DONE', id
       })
     },
-    onItemSortDone: (id) => {
+    onItemSortDone: (item) => {
       dispatch({
-        type: 'SORT_RED', id
+        type: 'SORT_RED', /*whatToSort: item.items.isDone = true*/
       })
     },
-    onItemSortUnDone: (id) => {
+    onItemSortUnDone: () => {
       dispatch({
-        type: 'SORT_BLACK', id
+        type: 'SORT_BLACK'
       })
     },
-    onItemSortAll: (e) => {
+    onItemSortAll: () => {
       dispatch({
-        type: 'SORT_ALL', e
+        type: 'SORT_ALL'
       })
     }
   })
