@@ -50,10 +50,17 @@ const reducerTodo = (state = initialState, action) => {
       };
 
     case actionTypes.MARK_DONE:
-      return state.items.map(item =>
+      return {
+        items: state.items.map( element =>
+          (element.id === action.id)
+          ? {...element, isDone: !element.isDone}
+          : { ...element})
+      };
+
+/*      return state.items.map(item =>
         (item.id === action.id)
           ? {...item, isDone: !item.isDone}
-          : {...item});
+          : {...item});*/
 
 /*    case actionTypes.SORT_REDX:
       return state.items.filter(item => item.isDone);

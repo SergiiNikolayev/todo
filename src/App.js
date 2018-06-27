@@ -48,7 +48,7 @@ class App extends Component {
         />
         <Controls
           userClick={this.itemAddHandler}
-          userClickFilterOne={e => this.sortDoneHandler(e)}
+          userClickFilterOne={this.sortDoneHandler}
           userClickFilterTwo={e => this.sortUnDoneHandler(e)}
           userClickFilterThree={e => this.sortAllHandler(e)}
         />
@@ -85,10 +85,10 @@ export default connect(
     },
     onItemDone: (id) => {
       dispatch({
-        type: 'DONE', id
+        type: 'MARK_DONE', id
       })
     },
-    onItemSortDone: (item) => {
+    onItemSortDone: () => {
       dispatch({
         type: 'SORT_RED', /*whatToSort: item.items.isDone = true*/
       })
