@@ -26,10 +26,9 @@ class App extends Component {
     this.props.onItemDone(id);
   };
 
-  sortDoneHandler = ( filter, store ) => {
+  sortDoneHandler = ( filter ) => {
     console.log("filter: " + filter);
-    console.log(store);
-    this.props.onItemSortDone( filter, store);
+    this.props.onItemSortDone( filter );
   };
 
   sortUnDoneHandler = (filter) => {
@@ -53,7 +52,7 @@ class App extends Component {
         />
         <Controls
           userClick={this.itemAddHandler}
-          userClickFilterOne={e => this.sortDoneHandler(VisibilityFilters.SORT_RED, this.props.todoItems)}
+          userClickFilterOne={e => this.sortDoneHandler(VisibilityFilters.SORT_RED)}
           userClickFilterTwo={e => this.sortUnDoneHandler(VisibilityFilters.SORT_BLACK)}
           userClickFilterThree={e => this.sortAllHandler(VisibilityFilters.SORT_ALL)}
         />
@@ -77,7 +76,7 @@ class App extends Component {
 export default connect(
   state => ({
     //todoItems: state.items,
-    todoItems: getFilteredItems({ ...state }) //store
+    todoItems: getFilteredItems(state) //store
   }),
   dispatch => ({
     onItemAdd: (item) => {
@@ -93,9 +92,9 @@ export default connect(
         type: 'MARK_DONE', id
       })
     },
-    onItemSortDone: ( filter, state ) => {
+    onItemSortDone: ( filter ) => {
       dispatch({
-        type: filter, todoItems: getFilteredItems(filter, { ...state })
+        type: filter
       })
     },
     onItemSortUnDone: ( filter ) => {
