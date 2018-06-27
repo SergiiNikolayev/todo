@@ -94,7 +94,7 @@ export default connect(
     },
     onItemSortDone: ( filter ) => {
       dispatch({
-        type: filter
+        type: filter, todoItems: getFilteredItems()
       })
     },
     onItemSortUnDone: ( filter ) => {

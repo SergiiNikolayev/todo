@@ -42,7 +42,7 @@ const reducerTodo = (state = initialState, action) => {
         items: state.items.concat([
           {
             isDone: false,
-            /*currentFilter: VisibilityFilters.SORT_BLACK,*/
+            currentFilter: VisibilityFilters.SORT_BLACK,
             name: action.payload.name,
             id: action.payload.id
           }
@@ -53,7 +53,7 @@ const reducerTodo = (state = initialState, action) => {
       return {
         items: state.items.map( element =>
           (element.id === action.id )
-          ? {...element, isDone: !element.isDone}
+          ? {...element, isDone: !element.isDone, currentFilter: VisibilityFilters.SORT_RED}
           : { ...element})
       };
 

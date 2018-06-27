@@ -21,7 +21,7 @@ export const getFilteredItems = (store) => {
   const items = store.items;
 
   // в зависимости от того какой фильтр, производим соответсвующие действия
-  if (currentFilter === VisibilityFilters.SORT_RED) {
+  if (currentFilter === VisibilityFilters.SORT_RED && items.isDone) {
     return items.filter(item => items.isDone);
   } else if (currentFilter === VisibilityFilters.SORT_BLACK) {
     return items.filter(item => !items.isDone);
