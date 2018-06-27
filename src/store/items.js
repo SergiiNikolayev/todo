@@ -2,7 +2,7 @@ import * as actionTypes from './actions';
 import {VisibilityFilters} from './actions';
 
 const initialState = {
-  items: [],
+  list: [],
 };
 
 const testState = {
@@ -39,10 +39,10 @@ const reducerTodo = (state = initialState, action) => {
     case actionTypes.ADD:
       return {
         ...state,
-        items: state.items.concat([
+        list: state.list.concat([
           {
             isDone: false,
-            currentFilter: VisibilityFilters.SORT_BLACK,
+            /*currentFilter: VisibilityFilters.SORT_BLACK,*/
             name: action.payload.name,
             id: action.payload.id
           }
@@ -51,7 +51,7 @@ const reducerTodo = (state = initialState, action) => {
 
     case actionTypes.MARK_DONE:
       return {
-        items: state.items.map( element =>
+        list: state.list.map( element =>
           (element.id === action.id )
           ? {...element, isDone: !element.isDone}
           : { ...element})

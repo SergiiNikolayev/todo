@@ -17,18 +17,16 @@ export const getFilteredItems = (store) => {
     return items.filter(item => item);
   }*/
 
-  const currentFilter = store.currentFilter;// достаем текущий фильтр
-  const items = store.items;
+  const currentFilter = store.filter.currentFilter;// достаем текущий фильтр
+  const items = store.items.list;
 
   // в зависимости от того какой фильтр, производим соответсвующие действия
-  if (currentFilter === VisibilityFilters.SORT_RED) {
+  if (currentFilter === 'SORT_RED') {
     return items.filter(item => items.isDone);
-  } else if (currentFilter === VisibilityFilters.SORT_BLACK) {
+  } else if (currentFilter === 'SORT_BLACK') {
     return items.filter(item => !items.isDone);
-  } else if (currentFilter === VisibilityFilters.SORT_ALL) {
-    return items.filter(item => item);
   } else {
-    return items.filter(item => item);
+    return items;
   }
 
 };
