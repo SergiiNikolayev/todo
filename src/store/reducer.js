@@ -42,7 +42,7 @@ const reducerTodo = (state = initialState, action) => {
         items: state.items.concat([
           {
             isDone: false,
-            /*currentFilter: VisibilityFilters.SORT_ALL,*/
+            /*currentFilter: VisibilityFilters.SORT_BLACK,*/
             name: action.payload.name,
             id: action.payload.id
           }
@@ -52,29 +52,11 @@ const reducerTodo = (state = initialState, action) => {
     case actionTypes.MARK_DONE:
       return {
         items: state.items.map( element =>
-          (element.id === action.id)
+          (element.id === action.id )
           ? {...element, isDone: !element.isDone}
           : { ...element})
       };
 
-/*      return state.items.map(item =>
-        (item.id === action.id)
-          ? {...item, isDone: !item.isDone}
-          : {...item});*/
-
-/*    case actionTypes.SORT_REDX:
-      return state.items.filter(item => item.isDone);
-    /!*      const newState = [ ...state ];
-          const fltr = state.filter(item => item.isDone);
-          const newNewState = [ ...newState];
-          return newNewState;*!/
-    /!*      return state.filter(item => item.isDone);*!/
-
-    /!* black case is dangerous because it returns cut state *!/
-    case actionTypes.SORT_BLACKX:
-      return state.items.filter(item => !item.isDone);
-    case actionTypes.SORT_ALLX:
-      return {...state};*/
     default:
       return state;
   }

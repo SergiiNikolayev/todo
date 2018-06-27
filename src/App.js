@@ -6,6 +6,7 @@ import Input from './components/Input'
 import Output from './components/Output'
 import {getFilteredItems} from './store/selects'
 import './index.css'
+import {VisibilityFilters} from "./store/actions";
 
 class App extends Component {
   constructor(props) {
@@ -25,16 +26,19 @@ class App extends Component {
     this.props.onItemDone(id);
   };
 
-  sortDoneHandler = () => {
-    this.props.onItemSortDone();
+  sortDoneHandler = ( filter ) => {
+    console.log(filter);
+    this.props.onItemSortDone( filter );
   };
 
-  sortUnDoneHandler = () => {
-    this.props.onItemSortUnDone();
+  sortUnDoneHandler = (filter) => {
+    console.log(filter);
+    this.props.onItemSortUnDone(filter);
   };
 
-  sortAllHandler = () => {
-    this.props.onItemSortAll()
+  sortAllHandler = (filter) => {
+    console.log(filter);
+    this.props.onItemSortAll(filter)
   };
 
   render() {
@@ -48,9 +52,9 @@ class App extends Component {
         />
         <Controls
           userClick={this.itemAddHandler}
-          userClickFilterOne={this.sortDoneHandler}
-          userClickFilterTwo={e => this.sortUnDoneHandler(e)}
-          userClickFilterThree={e => this.sortAllHandler(e)}
+          userClickFilterOne={e => this.sortDoneHandler(VisibilityFilters.SORT_RED)}
+          userClickFilterTwo={e => this.sortUnDoneHandler(VisibilityFilters.SORT_BLACK)}
+          userClickFilterThree={e => this.sortAllHandler(VisibilityFilters.SORT_ALL)}
         />
         <ol>
           {
@@ -88,19 +92,19 @@ export default connect(
         type: 'MARK_DONE', id
       })
     },
-    onItemSortDone: () => {
+    onItemSortDone: ( filter ) => {
       dispatch({
-        type: 'SORT_RED', /*whatToSort: item.items.isDone = true*/
+        type: filter
       })
     },
-    onItemSortUnDone: () => {
+    onItemSortUnDone: ( filter ) => {
       dispatch({
-        type: 'SORT_BLACK'
+        type: filter
       })
     },
-    onItemSortAll: () => {
+    onItemSortAll: (filter) => {
       dispatch({
-        type: 'SORT_ALL'
+        type: filter
       })
     }
   })
