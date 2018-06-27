@@ -75,8 +75,8 @@ class App extends Component {
 
 export default connect(
   state => ({
-    //todoItems: state.items,
-    todoItems: getFilteredItems({ ...state }) //store
+    todoItems: state.items,
+    //todoItems: getFilteredItems({ ...state }) //store
   }),
   dispatch => ({
     onItemAdd: (item) => {
