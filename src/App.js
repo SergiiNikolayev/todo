@@ -52,7 +52,7 @@ class App extends Component {
         />
         <Controls
           userClick={this.itemAddHandler}
-          userClickFilterOne={e => this.props.changeFilter(VisibilityFilters.SORT_RED)}
+          userClickFilterOne={e => this.props.changeFilter('SORT_RED')}
           userClickFilterTwo={e => this.props.changeFilter(VisibilityFilters.SORT_BLACK)}
           userClickFilterThree={e => this.props.changeFilter(VisibilityFilters.SORT_ALL)}
         />

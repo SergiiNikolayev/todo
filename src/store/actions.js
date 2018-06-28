@@ -8,7 +8,7 @@ export const MARK_DONE = 'MARK_DONE';
 export const SORT_BLACKX = 'SORT_BLACKX';
 export const SORT_ALLX = 'SORT_ALLX';*/
 
-export const CHANGE_FILTERS = 'CHANGE_FILTERS';
+export const CHANGE_FILTER = 'CHANGE_FILTER';
 
 /*
  * другие константы
