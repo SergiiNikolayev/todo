@@ -26,20 +26,18 @@ class App extends Component {
     this.props.onItemDone(id);
   };
 
-  sortDoneHandler = ( filter ) => {
-    console.log("filter: " + filter);
-    this.props.onItemSortDone( filter );
-  };
-
-  sortUnDoneHandler = (filter) => {
-    console.log(filter);
-    this.props.onItemSortUnDone(filter);
-  };
-
-  sortAllHandler = (filter) => {
-    console.log(filter);
-    this.props.onItemSortAll(filter)
-  };
+  /*  sortDoneHandler = ( filter ) => {
+      console.log(filter);
+      this.props.onItemSortDone( filter );
+    };
+    sortUnDoneHandler = (filter) => {
+      console.log(filter);
+      this.props.onItemSortUnDone(filter);
+    };
+    sortAllHandler = (filter) => {
+      console.log(filter);
+      this.props.onItemSortAll(filter)
+    };*/
 
   render() {
     return (
@@ -52,9 +50,9 @@ class App extends Component {
         />
         <Controls
           userClick={this.itemAddHandler}
-          userClickFilterOne={e => this.sortDoneHandler(VisibilityFilters.SORT_RED)}
-          userClickFilterTwo={e => this.sortUnDoneHandler(VisibilityFilters.SORT_BLACK)}
-          userClickFilterThree={e => this.sortAllHandler(VisibilityFilters.SORT_ALL)}
+          userClickFilterOne={e => this.props.changeFilter(VisibilityFilters.SORT_RED)}
+          userClickFilterTwo={e => this.props.changeFilter(VisibilityFilters.SORT_BLACK)}
+          userClickFilterThree={e => this.props.changeFilter(VisibilityFilters.SORT_ALL)}
         />
         <ol>
           {
@@ -75,7 +73,7 @@ class App extends Component {
 
 export default connect(
   state => ({
-    //todoItems: state.items,
+    //odoItems: state.items,
     todoItems: getFilteredItems(state) //store
   }),
   dispatch => ({
@@ -92,19 +90,24 @@ export default connect(
         type: 'MARK_DONE', id
       })
     },
-    onItemSortDone: ( filter ) => {
+    /*    onItemSortDone: ( filter ) => {
+          dispatch({
+            type: filter
+          })
+        },
+        onItemSortUnDone: ( filter ) => {
+          dispatch({
+            type: filter
+          })
+        },
+        onItemSortAll: (filter) => {
+          dispatch({
+            type: filter
+          })
+        },*/
+    changeFilter: (filter) => {
       dispatch({
-        type: filter
-      })
-    },
-    onItemSortUnDone: ( filter ) => {
-      dispatch({
-        type: filter
-      })
-    },
-    onItemSortAll: (filter) => {
-      dispatch({
-        type: filter
+        type: 'CHANGE_FILTER', filter
       })
     }
   })
