@@ -11,30 +11,6 @@ export const VisibilityFilters = {
   SORT_ALL : 'SORT_ALL'
 };
 
-//генераторы действий, action creators
-
-export const add = ({id, name}) => {
-  return {
-    type: ADD,
-    id: id,
-    name: name
-  }
-};
-
-export const markDone = (getId) => {
-  return {
-    type: MARK_DONE,
-    id: getId
-  }
-};
-
-export const changeFilter = (filter) => {
-  return {
-    type: CHANGE_FILTER,
-    filter: filter
-  }
-};
-
 /*export function addTodo(text) {
   return { type: ADD_TODO, text }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {VisibilityFilters} from './actions'
+import {VisibilityFilters} from './actions/actionTypes'
 
 export const getFilteredItems = (store) => {
 

@@ -1,5 +1,4 @@
-import * as actionTypes from './actions';
-import {VisibilityFilters} from './actions';
+import * as actionTypes from './actions/actionTypes';
 
 const initialState = {
   list: [],
@@ -13,7 +12,6 @@ const reducerTodo = (state = initialState, action) => {
         list: state.list.concat([
           {
             isDone: false,
-/*            currentFilter: VisibilityFilters.SORT_BLACK,*/
             name: action.name,
             id: action.id
           }

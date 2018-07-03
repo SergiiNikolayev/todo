@@ -1,4 +1,4 @@
-import {CHANGE_FILTER, VisibilityFilters} from './actions';
+import {CHANGE_FILTER, VisibilityFilters} from './actions/actionTypes';
 
 const initialState = {
     currentFilter: VisibilityFilters.SORT_ALL
