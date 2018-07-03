@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 
 import './index.css';
 import App from './App';
-import rootReducer from './store/rootReducer'
+import rootReducer from './store/reducers/rootReducer'
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 

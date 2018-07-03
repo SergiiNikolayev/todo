@@ -1,8 +1,8 @@
-import {CHANGE_FILTER, VisibilityFilters} from './actions/actionTypes';
+import {CHANGE_FILTER, VisibilityFilters} from '../actions/actionTypes';
 
 const initialState = {
     currentFilter: VisibilityFilters.SORT_ALL
-}
+};
 
 const reducerFilter = (state = initialState, action) => {
   switch (action.type) {
