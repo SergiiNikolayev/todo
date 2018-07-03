@@ -1,10 +1,6 @@
 //типы действий
 export const ADD = 'ADD';
 export const MARK_DONE = 'MARK_DONE';
-/*export const SORT_REDX = 'SORT_REDX';
-export const SORT_BLACKX = 'SORT_BLACKX';
-export const SORT_ALLX = 'SORT_ALLX';*/
-
 export const CHANGE_FILTER = 'CHANGE_FILTER';
 
 //другие константы
@@ -13,12 +9,29 @@ export const VisibilityFilters = {
   SORT_RED : 'SORT_RED',
   SORT_BLACK : 'SORT_BLACK',
   SORT_ALL : 'SORT_ALL'
-}
+};
 
-/*
-//генераторы действий
+//генераторы действий, action creators
 
-export function addTodo(text) {
+export const add = () => {
+  return {
+    type: ADD
+  }
+};
+
+export const markDone = () => {
+  return {
+    type: MARK_DONE
+  }
+};
+
+export const changeFilter = () => {
+  return {
+    type: CHANGE_FILTER
+  }
+};
+
+/*export function addTodo(text) {
   return { type: ADD_TODO, text }
 }
 

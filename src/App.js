@@ -26,19 +26,6 @@ class App extends Component {
     this.props.onItemDone(id);
   };
 
-  /*  sortDoneHandler = ( filter ) => {
-      console.log(filter);
-      this.props.onItemSortDone( filter );
-    };
-    sortUnDoneHandler = (filter) => {
-      console.log(filter);
-      this.props.onItemSortUnDone(filter);
-    };
-    sortAllHandler = (filter) => {
-      console.log(filter);
-      this.props.onItemSortAll(filter)
-    };*/
-
   render() {
     return (
       <React.Fragment>
@@ -72,13 +59,13 @@ class App extends Component {
 }
 
 export default connect(
-  state => ({
-    //odoItems: state.items,
-    todoItems: getFilteredItems(state) //store
+  mapStateToProps => ({
+    //todoItems: state.items,
+    todoItems: getFilteredItems(mapStateToProps) //store
   }),
-  dispatch => ({
+  mapDispatchToProps => ({
     onItemAdd: (item) => {
-      dispatch({
+      mapDispatchToProps({
         type: 'ADD', payload: {
           id: Date.now(),
           name: item
@@ -86,27 +73,12 @@ export default connect(
       })
     },
     onItemDone: (id) => {
-      dispatch({
+      mapDispatchToProps({
         type: 'MARK_DONE', id
       })
     },
-    /*    onItemSortDone: ( filter ) => {
-          dispatch({
-            type: filter
-          })
-        },
-        onItemSortUnDone: ( filter ) => {
-          dispatch({
-            type: filter
-          })
-        },
-        onItemSortAll: (filter) => {
-          dispatch({
-            type: filter
-          })
-        },*/
     changeFilter: (filter) => {
-      dispatch({
+      mapDispatchToProps({
         type: 'CHANGE_FILTER', filter
       })
     }
