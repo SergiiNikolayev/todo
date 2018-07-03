@@ -14,8 +14,8 @@ const reducerTodo = (state = initialState, action) => {
           {
             isDone: false,
 /*            currentFilter: VisibilityFilters.SORT_BLACK,*/
-            name: action.payload.name,
-            id: action.payload.id
+            name: action.name,
+            id: action.id
           }
         ])
       };

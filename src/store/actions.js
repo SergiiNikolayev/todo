@@ -13,21 +13,25 @@ export const VisibilityFilters = {
 
 //генераторы действий, action creators
 
-export const add = () => {
+export const add = ({id, name}) => {
   return {
-    type: ADD
+    type: ADD,
+    id: id,
+    name: name
   }
 };
 
-export const markDone = () => {
+export const markDone = (getId) => {
   return {
-    type: MARK_DONE
+    type: MARK_DONE,
+    id: getId
   }
 };
 
-export const changeFilter = () => {
+export const changeFilter = (filter) => {
   return {
-    type: CHANGE_FILTER
+    type: CHANGE_FILTER,
+    filter: filter
   }
 };
 

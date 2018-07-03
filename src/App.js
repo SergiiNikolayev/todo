@@ -6,7 +6,8 @@ import Input from './components/Input'
 import Output from './components/Output'
 import {getFilteredItems} from './store/selects'
 import './index.css'
-import {VisibilityFilters} from "./store/actions";
+import {VisibilityFilters} from './store/actions';
+import * as actionCreators from './store/actions';
 
 class App extends Component {
   constructor(props) {
@@ -65,22 +66,13 @@ export default connect(
   }),
   mapDispatchToProps => ({
     onItemAdd: (item) => {
-      mapDispatchToProps({
-        type: 'ADD', payload: {
-          id: Date.now(),
-          name: item
-        }
-      })
+      mapDispatchToProps(actionCreators.add({id: Date.now(), name: item}));
     },
     onItemDone: (id) => {
-      mapDispatchToProps({
-        type: 'MARK_DONE', id
-      })
+      mapDispatchToProps(actionCreators.markDone(id));
     },
     changeFilter: (filter) => {
-      mapDispatchToProps({
-        type: 'CHANGE_FILTER', filter
-      })
+      mapDispatchToProps(actionCreators.changeFilter(filter))
     }
   })
 )(App);
